@@ -304,348 +304,6 @@ require_once( trailingslashit( get_template_directory() ) . 'justinadlock-custom
 
 
 
-// Theme page start
-
-add_action('admin_menu', 'bloggist_themepage');
-function bloggist_themepage()
-{
-	$option = get_option('bloggist_themepage_seen');
-	$awaiting = !$option ? ' <span class="awaiting-mod">1</span>' : '';
-	$theme_info = add_theme_page(__('Theme Settings', 'bloggist'), __('Theme Settings', 'bloggist').$awaiting, 'manage_options', 'bloggist-info.php', 'bloggist_info_page', 1);
-}
-function bloggist_info_page()
-{
-	$user = wp_get_current_user();
-	$theme = wp_get_theme();
-	$parent_name = is_child_theme() ? wp_get_theme($theme->Template) : '';
-	$theme_name = is_child_theme() ? $theme." ".__("and", "bloggist")." ".$parent_name : $theme;
-	$demo_text = is_child_theme() ? sprintf(__("Need inspiration? Take a moment to view our theme demo for the %s parent theme %s!", "bloggist"), $theme, $parent_name) : __("Need inspiration? Take a moment to view our theme demo!", "bloggist");
-	$premium_text = is_child_theme() ? sprintf(__("Unlock all features by upgrading to the premium edition of %s and its parent theme %s.", "bloggist"), $theme, $parent_name) : sprintf(__("Unlock all features by upgrading to the premium edition of %s.", "bloggist"),$theme);
-	$option_name = 'bloggist_themepage_seen';
-	$option = get_option($option_name, null);
-	if (is_null($option)) {
-		add_option($option_name, true);
-	} elseif (!$option) {
-		update_option($option_name, true);
-	} ?>
-	<div class="wrap">
-
-		<div class="spt-theme-settings-wrapper">
-			<div class="spt-theme-settings-wrapper-main-content">
-				<div class="spt-theme-settings-tabs">
-
-					<div class="spt-theme-settings-tab">
-						<input type="radio" id="tab-1" name="tab-group-1">
-
-
-
-						<label class="spt-theme-settings-label" for="tab-1"><?php esc_html_e("Get started with", "bloggist"); ?> <?php echo esc_html($theme_name); ?></label>
-
-						<div class="spt-theme-settings-content">
-
-							<div class="spt-theme-settings-content-getting-started-wrapper">
-								<div class="spt-theme-settings-content-item">
-									<div class="spt-theme-settings-content-item-header">
-										<?php esc_html_e("Add Menus", "bloggist"); ?>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<a href="<?php echo esc_url(admin_url('nav-menus.php'))  ?>"><?php esc_html_e("Go to Menus", "bloggist"); ?></a>
-									</div>
-								</div>
-
-								<div class="spt-theme-settings-content-item">
-									<div class="spt-theme-settings-content-item-header">
-										<?php esc_html_e("Add Widgets", "bloggist"); ?>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<a href="<?php echo esc_url(admin_url('widgets.php'))  ?>"><?php esc_html_e("Go to Widgets", "bloggist"); ?></a>
-									</div>
-								</div>
-
-								<div class="spt-theme-settings-content-item">
-									<div class="spt-theme-settings-content-item-header">
-										<?php esc_html_e("Change Header Image", "bloggist"); ?>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<a href="<?php echo esc_url(admin_url('customize.php')) ?>"><?php esc_html_e("Go to Customizer", "bloggist"); ?></a>
-									</div>
-								</div>
-
-								<div class="spt-theme-settings-content-item">
-									<div class="spt-theme-settings-content-item-header">
-										<?php esc_html_e("Customize Header Text & Background", "bloggist"); ?>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<a href="<?php echo esc_url(admin_url('customize.php')) ?>"><?php esc_html_e("Go to Customizer", "bloggist"); ?></a>
-									</div>
-								</div>
-
-								<div class="spt-theme-settings-content-item">
-									<div class="spt-theme-settings-content-item-header">
-										<?php esc_html_e("Upload Logo", "bloggist"); ?>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<a href="<?php echo esc_url(admin_url('customize.php')) ?>"><?php esc_html_e("Go to Customizer", "bloggist"); ?></a>
-									</div>
-								</div>
-
-								<div class="spt-theme-settings-content-item">
-									<div class="spt-theme-settings-content-item-header">
-										<?php esc_html_e("Change Background Color / Image", "bloggist"); ?>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<a href="<?php echo esc_url(admin_url('customize.php')) ?>"><?php esc_html_e("Go to Customizer", "bloggist"); ?></a>
-									</div>
-								</div>
-
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Customize All Fonts", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Customize All Colors", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Import Demo Content", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Demo Import", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Contact Premium Support", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Unlock Full SEO Optimization", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Only Show Header Image On Front Page", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Custom Text On Header Image", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Only Show Upper Widgets On Front Page", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Lower Image Resolution To Increase Website Performance", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Unlock Elementor Compatibility", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Install Elementor", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Access All Child Themes", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("View Child Themes", "bloggist"); ?></span>
-									</div>
-								</a>
-
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Add Recent Posts Widget", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Widgets", "bloggist"); ?></span>
-									</div>
-								</a>
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Full Width Page and Post Template", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Custom Copyright Text", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Remove 'Tag' from tag page title", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Remove 'Author' from author page title", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-
-								<a target="_blank" href="https://superbthemes.com/bloggist/" class="spt-theme-settings-content-item spt-theme-settings-content-item-unavailable">
-									<div class="spt-theme-settings-content-item-header">
-										<span><?php esc_html_e("Remove 'Category' from author page title", "bloggist"); ?></span> <span><?php esc_html_e("Premium", "bloggist"); ?></span>
-									</div>
-									<div class="spt-theme-settings-content-item-content">
-										<span><?php esc_html_e("Go to Customizer", "bloggist"); ?></span>
-									</div>
-								</a>
-
-
-							</div>
-						</div> 
-					</div>
-
-
-				</div>      
-			</div>
-
-			<div class="spt-theme-settings-wrapper-sidebar">
-
-				<div class="spt-theme-settings-wrapper-sidebar-item">
-					<div class="spt-theme-settings-wrapper-sidebar-item-header"><?php esc_html_e("Additional Resources", "bloggist"); ?></div>
-					<div class="spt-theme-settings-wrapper-sidebar-item-content">
-						<ul>
-							<li>
-								<a target="_blank" href="https://wordpress.org/support/forums/"><span class="dashicons dashicons-wordpress"></span><?php esc_html_e("WordPress.org Support Forum", "bloggist"); ?></a>
-							</li>
-							<li>
-								<a target="_blank" href="https://www.facebook.com/superbthemescom/"><span class="dashicons dashicons-facebook-alt"></span><?php esc_html_e("Find us on Facebook", "bloggist"); ?></a>
-							</li>
-							<li>
-								<a target="_blank" href="https://twitter.com/superbthemescom"><span class="dashicons dashicons-twitter"></span><?php esc_html_e("Find us on Twitter", "bloggist"); ?></a>
-							</li>
-							<li>
-								<a target="_blank" href="https://www.instagram.com/superbthemes/"><span class="dashicons dashicons-instagram"></span><?php esc_html_e("Find us on Instagram", "bloggist"); ?></a>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-
-
-				<div class="spt-theme-settings-wrapper-sidebar-item">
-					<div class="spt-theme-settings-wrapper-sidebar-item-header"><?php esc_html_e("View Demo", "bloggist"); ?></div>
-					<div class="spt-theme-settings-wrapper-sidebar-item-content">
-						<p><?php echo esc_html($demo_text); ?></p>
-						<a href="https://superbthemes.com/demo/bloggist/" target="_blank" class="button button-primary"><?php esc_html_e("View Demo", "bloggist"); ?></a>
-					</div>
-				</div>
-
-				<div class="spt-theme-settings-wrapper-sidebar-item">
-					<div class="spt-theme-settings-wrapper-sidebar-item-header"><?php esc_html_e("Upgrade to Premium", "bloggist"); ?></div>
-					<div class="spt-theme-settings-wrapper-sidebar-item-content">
-						<p><?php echo esc_html($premium_text); ?></p>
-						<a href="https://superbthemes.com/bloggist/" target="_blank" class="button button-primary"><?php esc_html_e("View Premium Version", "bloggist"); ?></a>
-					</div>
-				</div>
-
-				<div class="spt-theme-settings-wrapper-sidebar-item">
-					<div class="spt-theme-settings-wrapper-sidebar-item-header"><?php esc_html_e("Helpdesk", "bloggist"); ?></div>
-					<div class="spt-theme-settings-wrapper-sidebar-item-content">
-						<p><?php esc_html_e("If you have issues with", "bloggist"); ?> <?php echo esc_html($theme); ?> <?php esc_html_e("then send us an email through our website!", "bloggist"); ?></p>
-						<a href="https://superbthemes.com/customer-support/" target="_blank" class="button"><?php esc_html_e("Contact Support", "bloggist"); ?></a>
-					</div>
-				</div>
-
-				<div class="spt-theme-settings-wrapper-sidebar-item">
-					<div class="spt-theme-settings-wrapper-sidebar-item-header"><?php esc_html_e("Review the Theme", "bloggist"); ?></div>
-					<div class="spt-theme-settings-wrapper-sidebar-item-content">
-						<p><?php esc_html_e("Do you enjoy using", "bloggist"); ?> <?php echo esc_html($theme); ?><?php esc_html_e("? Support us by reviewing us on WordPress.org!", "bloggist"); ?></p>
-						<a href="https://wordpress.org/support/theme/<?php echo esc_attr(get_stylesheet()); ?>/reviews/#new-post" target="_blank" class="button"><?php esc_html_e("Leave a Review", "bloggist"); ?></a>
-					</div>
-				</div>
-
-
-
-			</div>
-
-		</div>
-	</div>
-
-
-	<?php
-}
-
-function bloggist_comparepage_css($hook) {
-	if ('appearance_page_bloggist-info' != $hook) {
-		return;
-	}
-	wp_enqueue_style('bloggist-custom-style', get_template_directory_uri() . '/css/compare.css');
-}
-add_action('admin_enqueue_scripts', 'bloggist_comparepage_css');
-
-// Theme page end
-
-
-
 
 /**
  * This file represents an example of the code that themes would use to register
@@ -679,7 +337,7 @@ add_action('admin_enqueue_scripts', 'bloggist_comparepage_css');
  * Plugin:
  * require_once dirname( __FILE__ ) . '/path/to/class-tgm-plugin-activation.php';
  */
-require_once get_template_directory() . '/extra/class-tgm-plugin-activation.php';
+require_once get_template_directory() . '/inc/tgm/class-tgm-plugin-activation.php';
 
 add_action( 'tgmpa_register', 'bloggist_register_required_plugins' );
 
@@ -708,15 +366,9 @@ function bloggist_register_required_plugins() {
 	$plugins = array(
 
 		array(
-			'name'      => 'Superb Helper',
-			'slug'      => 'superb-helper',
-			'required'  => false,
-		),
-
-		array(
-			'name'      => 'Superb Addons - WordPress Editor And Elementor Blocks, Sections & Patterns',
+			'name'      => 'Superb Addons',
 			'slug'      => 'superb-blocks',
-			'required'  => false,
+			'required'  => true,
 		),
 
 	);
@@ -737,7 +389,7 @@ function bloggist_register_required_plugins() {
 		'has_notices'  => true,                    // Show admin notices or not.
 		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
 		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'is_automatic' => true,                   // Automatically activate plugins after installation or not.
 		'message'      => '',                      // Message to output right before the plugins table.
 
 	);
@@ -745,58 +397,32 @@ function bloggist_register_required_plugins() {
 	tgmpa( $plugins, $config );
 }
 
-add_action('admin_init', 'bloggist_spbThemesNotification', 8);
-
-function bloggist_spbThemesNotification(){
-	$notifications = include('inc/admin_notification/Autoload.php');
-	$notifications->Add("bloggist_notification", "Unlock All Features with Bloggist Premium – Limited Time Offer", "
-		
-		Take advantage of the up to <span style='font-weight:bold;'>40% discount</span> and unlock all features with Bloggist Premium. 
-		The discount is only available for a limited time.
-
-		<div>
-		<a style='margin-bottom:15px;' class='button button-large button-secondary' target='_blank' href='https://superbthemes.com/bloggist/'>Read More</a> <a style='margin-bottom:15px;' class='button button-large button-primary' target='_blank' href='https://superbthemes.com/bloggist/'>Upgrade Now</a>
-		</div>
-
-		", "info");
 
 
-	$options_notification_start = array("delay"=> "-1 seconds", "wpautop" => false);
-	$notifications->Add("bloggist_notification_start", "Let's get you started with Bloggist!", '
-		<span class="st-notification-wrapper">
-		<span class="st-notification-column-wrapper">
-		<span class="st-notification-column">
-		<img src="'. esc_url( get_template_directory_uri() . '/inc/admin_notification/src/preview.png' ).'" width="150" height="177" />
-		</span>
 
-		<span class="st-notification-column">
-		<h2>Why Bloggist</h2>
-		<ul class="st-notification-column-list">
-		<li>Easy to Use & Customize</li>
-		<li>Search Engine Optimized</li>
-		<li>Lightweight and Fast</li>
-		<li>Top-notch Customer Support</li>
-		</ul>
-		<a href="https://superbthemes.com/demo/bloggist/" target="_blank" class="button">View Bloggist Demo <span aria-hidden="true" class="dashicons dashicons-external"></span></a> 
 
-		</span>
-		<span class="st-notification-column">
-		<h2>Customize Bloggist</h2>
-		<ul>
-		<li><a href="'. esc_url( admin_url( 'customize.php' ) ) .'" class="button button-primary">Customize The Design</a></li>
-		<li><a href="'. esc_url( admin_url( 'widgets.php' ) ) .'" class="button button-primary">Add/Edit Widgets</a></li>
-		<li><a href="https://superbthemes.com/customer-support/" target="_blank" class="button">Contact Support <span aria-hidden="true" class="dashicons dashicons-external"></span></a> </li>
-		</ul>
-		</span>
-		</span>
-		<span class="st-notification-footer">
-		Bloggist is created by SuperbThemes. We have 100.000+ users and are rated <strong>Excellent</strong> on Trustpilot <img src="'. esc_url( get_template_directory_uri() . '/inc/admin_notification/src/stars.svg' ).'" width="87" height="16" />
-		</span>
-		</span>
 
-		<style>.st-notification-column-wrapper{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;border-top:1px solid #eee;padding-top:20px;margin-top:3px}.st-notification-column-wrapper h2{margin:0}.st-notification-footer img{margin-bottom:-3px;margin-left:10px}.st-notification-column-wrapper .button{min-width:180px;text-align:center;margin-top:10px}.st-notification-column{margin-right:10px;padding:0 10px;max-width:250px;width:100%}.st-notification-column img{border:1px solid #eee}.st-notification-footer{display:inline-block;width:100%;padding:15px 0;border-top:1px solid #eee;margin-top:10px}.st-notification-column:first-of-type{padding-left:0;max-width:160px}.st-notification-column-list li{list-style-type:circle;margin-left:15px;font-size:14px}@media only screen and (max-width:1000px){.st-notification-column{max-width:33%}}@media only screen and (max-width:800px){.st-notification-column{max-width:50%}.st-notification-column:first-of-type{display:none}}@media only screen and (max-width:600px){.st-notification-column-wrapper{display:block}.st-notification-column{width:100%;max-width:100%;display:inline-block;padding:0;margin:0}span.st-notification-column:last-of-type{margin-top:30px}}</style>
+// Initialize information content
+require_once trailingslashit(get_template_directory()) . 'inc/vendor/autoload.php';
 
-		', "info", $options_notification_start);
-	$notifications->Boot();
-}
+use SuperbThemesThemeInformationContent\ThemeEntryPoint;
 
+ThemeEntryPoint::init([
+    'type' => 'classic', // block / classic
+    'theme_url' => 'https://superbthemes.com/bloggist/',
+    'demo_url' => 'https://superbthemes.com/demo/bloggist/',
+    'features' => array(
+    	array('title'=>'Customize All Fonts'),
+    	array('title'=>'Customize All Colors'),
+    	array('title'=>'Only Show Header Image On Front Page'),
+    	array('title'=>'Custom Text On Header Image'),
+    	array('title'=>'Only Show Upper Widgets On Front Page'),
+    	array('title'=>'Lower Image Resolution To Increase Website Performance'),
+    	array('title'=>'Add Recent Posts Widget'),
+    	array('title'=>'Full Width Page and Post Template'),
+    	array('title'=>'Custom Copyright Text'),
+    	array('title'=>'Remove "Tag" from tag page title'),
+    	array('title'=>'Remove "Author" from author page title'),
+    	array('title'=>'Remove "Category" from author page title')
+    )
+]);
