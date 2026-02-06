@@ -2,9 +2,9 @@
 
 Contributors: themeeverest  
 Requires at least: 4.0  
-Tested up to: 5.9
-Stable tag: 4.6
-Version: 4.6
+Tested up to: 6.9
+Stable tag: 6.3
+Version: 6.3
 Tested up to: 6.0
 Requires PHP: 4.0
 License: GPLv2 or later  
@@ -19,7 +19,7 @@ It does not matter if you want to create a classic news website, online editoria
 It does not matter if you want to create a classic news website, online editorial magazine, a personal modern lifestyle blog, or an affiliate review website. Bloggist offers limitless customization. The theme is a perfect combination of beautiful and professional. There is a ton of ad space, you can use the header widgets to place ads banners and AdSense in case you need to earn money as an affiliate - No matter if it is image ads advertisment or video advertising, all ad networks work such as Google DFP Ads, Adsense and more. Our theme is made for the search engines, so you can easily beat the other bloggers and newspapers in Google with our fast and SEO optimized theme. If you wish to start blogging about business or travel for example then our responsive and flexible design is perfect - It is elegant and you can make it dark, white, minimal, boxed, flat, clean or advanced, and full of sidebar widgets if you wish. Being creative and setting up a theme have never been so simple. Its elegant and minimalistic look makes it an attractive theme for writers who wish to write about their view on food, fashion, travel, clothing, movies, or their lifestyle in general.
 
 ## Copyright
-Bloggist WordPress Theme, Copyright 2022 themeeverest
+Bloggist WordPress Theme, Copyright 2026 themeeverest
 Bloggist is distributed under the terms of the GNU GPL
 
 Bloggist bundles the following third-party resources:
