@@ -245,6 +245,25 @@ function bloggist_google_fonts() {
 add_action( 'wp_enqueue_scripts', 'bloggist_google_fonts' );
 
 
+
+/**
+ * Fix editor font after WP 7.0.
+ */
+function bloggist_editor_font_fix() {
+	wp_add_inline_style(
+		'bloggist-google-fonts',
+		'
+		body,
+		.editor-styles-wrapper {
+			font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+		}
+		'
+	);
+}
+add_action( 'enqueue_block_assets', 'bloggist_google_fonts' );
+add_action( 'enqueue_block_assets', 'bloggist_editor_font_fix', 20 );
+
+
 /**
  * Dots after excerpt
  */
